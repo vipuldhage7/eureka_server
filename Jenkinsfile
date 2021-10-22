@@ -1,14 +1,15 @@
 pipeline {
     agent any
-    tools{
-        maven 'maven 3.13'
-        jdk 'jdk8'
-    }
-    stages {
+   stages {
         stage('Verify Branch') {
             steps {
                 echo "$GIT_BRANCH"
             }
         }
+       stage('build') {
+           steps {
+           sh "mvn clean install -DskipTest"
+                }
+           }
     }
 }
